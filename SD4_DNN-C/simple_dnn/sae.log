@@ -1,0 +1,23 @@
+=========================
+Training SAE
+=========================
+Epoch: [  1| 20] 	 | Training Loss 0.235
+Epoch: [  2| 20] 	 | Training Loss 0.212
+Epoch: [  3| 20] 	 | Training Loss 0.184
+Epoch: [  4| 20] 	 | Training Loss 0.211
+Epoch: [  5| 20] 	 | Training Loss 0.156
+Epoch: [  6| 20] 	 | Training Loss 0.184
+Epoch: [  7| 20] 	 | Training Loss 0.149
+Epoch: [  8| 20] 	 | Training Loss 0.133
+Epoch: [  9| 20] 	 | Training Loss 0.137
+Epoch: [ 10| 20] 	 | Training Loss 0.118
+Epoch: [ 11| 20] 	 | Training Loss 0.119
+Epoch: [ 12| 20] 	 | Training Loss 0.117
+Epoch: [ 13| 20] 	 | Training Loss 0.129
+Epoch: [ 14| 20] 	 | Training Loss 0.121
+Epoch: [ 15| 20] 	 | Training Loss 0.118
+Epoch: [ 16| 20] 	 | Training Loss 0.111
+Epoch: [ 17| 20] 	 | Training Loss 0.111
+Epoch: [ 18| 20] 	 | Training Loss 0.101
+Epoch: [ 19| 20] 	 | Training Loss 0.108
+Epoch: [ 20| 20] 	 | Training Loss 0.106
