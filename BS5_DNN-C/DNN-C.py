@@ -47,7 +47,7 @@ plt.rcParams["figure.figsize"] = (10, 5)
 # ------------------------------------------------------------------------
 # File paths
 train_file_path = "./train_simple_dnn.csv"
-base_path = "./simple_dnn/"
+base_path = "./DNN-C/"
 res_path = os.path.join(base_path)
 os.makedirs(res_path, exist_ok=True)
 print(f"Results will be saved in: {res_path}")
@@ -310,7 +310,7 @@ scheduler = torch.optim.lr_scheduler.StepLR(opt_mlc, step_size=int(EPOCH_MLC / 2
 
 # Training ---------------------------------------------------------------
 print("=" * 25 + "\n" + "Training CLS" + "\n" + "=" * 25, file=open(os.path.join(res_path, "cls.log"), "a+"))
-train_accuracies = []  # 用于存储每个epoch的训练准确率
+train_accuracies = []
 mlc_loss = []
 
 for epoch in range(EPOCH_MLC):
@@ -323,9 +323,8 @@ for epoch in range(EPOCH_MLC):
         loss.backward()
         opt_mlc.step()
 
-    # 每个epoch后计算并打印训练准确率
     train_accuracy = calculate_accuracy(cls, tra)
-    train_accuracies.append(train_accuracy)  # 存储准确率
+    train_accuracies.append(train_accuracy)
     print(
         "Epoch: [{:3d}|{:3d}] | Training Loss: {:.3f} | Training Accuracy: {:.2f}%"
         .format(epoch + 1, EPOCH_MLC, loss.item(), train_accuracy),

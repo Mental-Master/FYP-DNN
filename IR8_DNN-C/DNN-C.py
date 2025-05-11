@@ -47,7 +47,7 @@ plt.rcParams["figure.figsize"] = (10, 5)
 # ------------------------------------------------------------------------
 # File paths
 train_file_path = "./train_simple_dnn.csv"
-base_path = "./simple_dnn/"
+base_path = "./DNN-C/"
 res_path = os.path.join(base_path)
 os.makedirs(res_path, exist_ok=True)
 print(f"Results will be saved in: {res_path}")

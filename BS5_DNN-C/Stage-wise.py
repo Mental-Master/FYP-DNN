@@ -41,7 +41,7 @@ plt.rcParams["figure.figsize"] = (10, 5)
 # ------------------------------------------------------------------------
 # >>> 路径及结果保存文件夹
 # ------------------------------------------------------------------------
-base_path = "./CL/"
+base_path = "./Stage-wise/"
 res_path = os.path.join(base_path)
 os.makedirs(res_path, exist_ok=True)
 print(f"Results will be saved in: {res_path}")
@@ -183,7 +183,7 @@ cls_scheduler = torch.optim.lr_scheduler.StepLR(cls_optimizer, step_size=5, gamm
 
 
 # ------------------------------------------------------------------------
-# >>> 定义训练函数（每个 epoch 先训练 SAE，再训练 CLS）
+# >>> Define the training function (SAE is trained first and CLS is trained later in each epoch)
 # ------------------------------------------------------------------------
 def train_epoch(model_sae, model_cls, loader, optimizer_sae, optimizer_cls):
     model_sae.train()
@@ -191,13 +191,13 @@ def train_epoch(model_sae, model_cls, loader, optimizer_sae, optimizer_cls):
     total_sae_loss = 0.0
     total_cls_loss = 0.0
 
-    # 遍历数据集（同一 loader 同时用于 SAE 和 CLS 训练）
+    # Traversing the dataset (same loader for both SAE and CLS training)
     for x, y, sample_weight in loader:
         x = x.cuda()
         y = y.cuda()
         sample_weight = sample_weight.cuda()
 
-        # === SAE 部分训练：重构损失 ===
+        # === SAE part training: reconstruction loss ===
         optimizer_sae.zero_grad()
         recon = model_sae(x)
         loss_sae = mse(recon, x)
@@ -205,10 +205,10 @@ def train_epoch(model_sae, model_cls, loader, optimizer_sae, optimizer_cls):
         optimizer_sae.step()
         total_sae_loss += loss_sae.item()
 
-        # === CLS 部分训练：加权交叉熵 ===
+        # === CLS part training: Weighted cross-entropy ===
         optimizer_cls.zero_grad()
         outputs = model_cls(x)
-        loss_each = cre(outputs, y)  # 每个样本的 loss
+        loss_each = cre(outputs, y)
         loss_cls = (loss_each * sample_weight).mean()
         loss_cls.backward()
         optimizer_cls.step()
@@ -220,27 +220,27 @@ def train_epoch(model_sae, model_cls, loader, optimizer_sae, optimizer_cls):
 
 
 # ------------------------------------------------------------------------
-# >>> 训练阶段设置
+# >>> Training Phase Setup
 # ------------------------------------------------------------------------
-EPOCH_STAGE = 10  # 每个阶段训练的 epoch 数
+EPOCH_STAGE = 10  # Number of epochs for training in each stage
 
-# 阶段1：仅使用训练集1（权重均为 1.0）
+# Stage 1: Using only training set 1 (weights 1.0)
 dataset_stage1 = WeightedDataset(tra1_x, tra1_y, weight=1.0)
 
-# 阶段2：训练集1（权重 0.5）与训练集2（权重 1.0）
+# Stage 2: Training Set 1 (weight 0.5) and training Set 2 (weight 1.0)
 from torch.utils.data import ConcatDataset
 
 dataset_stage1_2 = WeightedDataset(tra1_x, tra1_y, weight=0.5)
 dataset_stage2 = WeightedDataset(tra2_x, tra2_y, weight=1.0)
 concat_dataset_stage2 = ConcatDataset([dataset_stage1_2, dataset_stage2])
 
-# 阶段3：训练集1（权重 0.25）、训练集2（权重 0.5）和训练集3（权重 1.0）
+# Stage 3: Training set 1 (weight 0.25), training set 2 (weight 0.5), and training set 3 (weight 1.0)
 dataset_stage1_3 = WeightedDataset(tra1_x, tra1_y, weight=0.25)
 dataset_stage2_3 = WeightedDataset(tra2_x, tra2_y, weight=0.5)
 dataset_stage3 = WeightedDataset(tra3_x, tra3_y, weight=1.0)
 concat_dataset_stage3 = ConcatDataset([dataset_stage1_3, dataset_stage2_3, dataset_stage3])
 
-# 定义各阶段 DataLoader
+# Define the stage dataloaders
 loader_stage1 = torch.utils.data.DataLoader(dataset_stage1, batch_size=16, shuffle=True,
                                             drop_last=True, generator=torch.Generator(device='cuda'))
 loader_stage2 = torch.utils.data.DataLoader(concat_dataset_stage2, batch_size=16, shuffle=True,
@@ -248,14 +248,14 @@ loader_stage2 = torch.utils.data.DataLoader(concat_dataset_stage2, batch_size=16
 loader_stage3 = torch.utils.data.DataLoader(concat_dataset_stage3, batch_size=16, shuffle=True,
                                             drop_last=True, generator=torch.Generator(device='cuda'))
 
-# 用于记录训练过程中的损失
+# Used to record the loss during training
 sae_loss_list = []
 cls_loss_list = []
 
 start_time = time.time()
 
 # ------------------------------------------------------------------------
-# >>> 阶段1训练（Train1 only）
+# >>> Stage 1 Training (Train1 only)
 # ------------------------------------------------------------------------
 with open(os.path.join(res_path, "cls.log"), "a+") as f:
     f.write("=" * 25 + "\nTraining CLS Stage 1 (Train1 only)\n" + "=" * 25 + "\n")
@@ -269,7 +269,7 @@ for epoch in range(EPOCH_STAGE):
     cls_scheduler.step()
 
 # ------------------------------------------------------------------------
-# >>> 阶段2训练（Train1 weight 0.5, Train2 weight 1.0）
+# >>> Stage 2 Training (Train1:0.5, Train2:1.0)
 # ------------------------------------------------------------------------
 with open(os.path.join(res_path, "cls.log"), "a+") as f:
     f.write("=" * 25 + "\nTraining CLS Stage 2 (Train1:0.5, Train2:1.0)\n" + "=" * 25 + "\n")
@@ -283,7 +283,7 @@ for epoch in range(EPOCH_STAGE):
     cls_scheduler.step()
 
 # ------------------------------------------------------------------------
-# >>> 阶段3训练（Train1:0.25, Train2:0.5, Train3:1.0）
+# >>> Stage 3 Training (Train1:0.25, Train2:0.5, Train3:1.0)
 # ------------------------------------------------------------------------
 with open(os.path.join(res_path, "cls.log"), "a+") as f:
     f.write("=" * 25 + "\nTraining CLS Stage 3 (Train1:0.25, Train2:0.5, Train3:1.0)\n" + "=" * 25 + "\n")
@@ -301,7 +301,7 @@ cls.show()
 
 
 # ------------------------------------------------------------------------
-# >>> 验证及保存预测结果
+# >>> Validate and save predictions
 # ------------------------------------------------------------------------
 def calculate_accuracy(model, data_loader):
     correct = 0
@@ -316,7 +316,7 @@ def calculate_accuracy(model, data_loader):
     return correct / total
 
 
-# 计算验证集上准确率
+# Calculate the accuracy on the validation set
 def evaluate(model, x, y):
     model.eval()
     with torch.no_grad():

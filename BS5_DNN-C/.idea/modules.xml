@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BS5d.iml" filepath="$PROJECT_DIR$/.idea/BS5d.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BS5_DNN-C.iml" filepath="$PROJECT_DIR$/.idea/BS5_DNN-C.iml" />
     </modules>
   </component>
 </project>

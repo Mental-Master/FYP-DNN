@@ -1,0 +1,19 @@
+SAE Structure: Sequential(
+  (0): Sequential(
+    (0): Linear(in_features=205, out_features=102, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=102, out_features=68, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=68, out_features=51, bias=True)
+    (5): ReLU()
+  )
+  (1): Sequential(
+    (0): Linear(in_features=51, out_features=68, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.2, inplace=False)
+    (3): Linear(in_features=68, out_features=102, bias=True)
+    (4): ReLU()
+    (5): Dropout(p=0.2, inplace=False)
+    (6): Linear(in_features=102, out_features=205, bias=True)
+  )
+)

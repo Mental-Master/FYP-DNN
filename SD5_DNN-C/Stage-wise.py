@@ -41,7 +41,7 @@ plt.rcParams["figure.figsize"] = (10, 5)
 # ------------------------------------------------------------------------
 # >>> 路径及结果保存文件夹
 # ------------------------------------------------------------------------
-base_path = "./CL/"
+base_path = "./Stage-wise/"
 res_path = os.path.join(base_path)
 os.makedirs(res_path, exist_ok=True)
 print(f"Results will be saved in: {res_path}")
