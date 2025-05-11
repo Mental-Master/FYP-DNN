@@ -1,0 +1,39 @@
+=========================
+Training CLS Stage 1 (Train1 only)
+=========================
+Stage1 - Epoch: [  1| 10] | SAE Loss: 0.566 | CLS Loss: 4.712
+Stage1 - Epoch: [  2| 10] | SAE Loss: 0.293 | CLS Loss: 4.078
+Stage1 - Epoch: [  3| 10] | SAE Loss: 0.242 | CLS Loss: 3.769
+Stage1 - Epoch: [  4| 10] | SAE Loss: 0.225 | CLS Loss: 3.592
+Stage1 - Epoch: [  5| 10] | SAE Loss: 0.204 | CLS Loss: 3.441
+Stage1 - Epoch: [  6| 10] | SAE Loss: 0.178 | CLS Loss: 3.292
+Stage1 - Epoch: [  7| 10] | SAE Loss: 0.163 | CLS Loss: 3.202
+Stage1 - Epoch: [  8| 10] | SAE Loss: 0.150 | CLS Loss: 3.086
+Stage1 - Epoch: [  9| 10] | SAE Loss: 0.138 | CLS Loss: 3.022
+Stage1 - Epoch: [ 10| 10] | SAE Loss: 0.129 | CLS Loss: 3.000
+=========================
+Training CLS Stage 2 (Train1:0.5, Train2:1.0)
+=========================
+Stage2 - Epoch: [  1| 10] | SAE Loss: 0.135 | CLS Loss: 2.648
+Stage2 - Epoch: [  2| 10] | SAE Loss: 0.117 | CLS Loss: 2.486
+Stage2 - Epoch: [  3| 10] | SAE Loss: 0.107 | CLS Loss: 2.440
+Stage2 - Epoch: [  4| 10] | SAE Loss: 0.098 | CLS Loss: 2.370
+Stage2 - Epoch: [  5| 10] | SAE Loss: 0.090 | CLS Loss: 2.341
+Stage2 - Epoch: [  6| 10] | SAE Loss: 0.083 | CLS Loss: 2.255
+Stage2 - Epoch: [  7| 10] | SAE Loss: 0.076 | CLS Loss: 2.209
+Stage2 - Epoch: [  8| 10] | SAE Loss: 0.071 | CLS Loss: 2.175
+Stage2 - Epoch: [  9| 10] | SAE Loss: 0.067 | CLS Loss: 2.143
+Stage2 - Epoch: [ 10| 10] | SAE Loss: 0.063 | CLS Loss: 2.105
+=========================
+Training CLS Stage 3 (Train1:0.25, Train2:0.5, Train3:1.0)
+=========================
+Stage3 - Epoch: [  1| 10] | SAE Loss: 0.071 | CLS Loss: 1.998
+Stage3 - Epoch: [  2| 10] | SAE Loss: 0.063 | CLS Loss: 1.871
+Stage3 - Epoch: [  3| 10] | SAE Loss: 0.057 | CLS Loss: 1.818
+Stage3 - Epoch: [  4| 10] | SAE Loss: 0.054 | CLS Loss: 1.785
+Stage3 - Epoch: [  5| 10] | SAE Loss: 0.050 | CLS Loss: 1.757
+Stage3 - Epoch: [  6| 10] | SAE Loss: 0.048 | CLS Loss: 1.712
+Stage3 - Epoch: [  7| 10] | SAE Loss: 0.046 | CLS Loss: 1.684
+Stage3 - Epoch: [  8| 10] | SAE Loss: 0.043 | CLS Loss: 1.666
+Stage3 - Epoch: [  9| 10] | SAE Loss: 0.041 | CLS Loss: 1.648
+Stage3 - Epoch: [ 10| 10] | SAE Loss: 0.040 | CLS Loss: 1.624
