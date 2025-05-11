@@ -8,5 +8,5 @@ The code for the DNN regression model is stored in a folder with the DNN-R suffi
 The code for stage-wise training framework is stored in a folder on each floor, named Stage-wise, where the Stage-wise folder holds the predictions of the trained model.
 
 ## Acknowledgements
-Thanks to my supervisor, Dr. Kyeong Soo (Joseph) Kim, for his encouragement and continuous patient guidance during this whole project.\
+Thanks to my supervisor, Dr. Kyeong Soo (Joseph) Kim, for his encouragement and guidance during this whole project.\
 Thanks to my TAs, Dr. Zhe Tang and Dr. Sihao Li, for their help and support on my DNN models and codes.
