@@ -10,3 +10,6 @@ The code for Stage-wise Training Framework is stored in a folder on each floor, 
 ## Acknowledgements
 Thanks to my supervisor, Dr. Kyeong Soo (Joseph) Kim, for his encouragement and guidance during this whole project.\
 Thanks to my TAs, Dr. Zhe Tang and Dr. Sihao Li, for their help and support on my DNN models and codes.
+
+## Notes
+I am very sorry that due to the limited time, Chinese and English comments are mixed in the Python code of some DNN models, which has caused some inconvenience to readers.
